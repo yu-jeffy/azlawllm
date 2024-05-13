@@ -59,7 +59,7 @@ BASE_URL = 'https://www.azleg.gov'
 DETAILS_BASE_URL = f'{BASE_URL}/arsDetail/?title='
 
 # Iterate through each title
-for title_number in range(1, 50):  # Assuming Titles 1 to 49 exist
+for title_number in range(2, 50):  # Assuming Titles 1 to 49 exist
     title_url = f"{DETAILS_BASE_URL}{title_number}"
     articles = get_article_links(title_url)
     
@@ -69,6 +69,11 @@ for title_number in range(1, 50):  # Assuming Titles 1 to 49 exist
             save_article_content(article_name, title, content)
         else:
             print(f"No content retrieved for {article_name}.")
+    
+    # Add a check to skip the title if no articles are found
+    if not articles:
+        print(f"No articles found for Title {title_number}. Skipping...")
+        continue
 
     # Remove the break in the loop for full operation across all titles
     break

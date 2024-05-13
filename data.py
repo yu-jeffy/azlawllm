@@ -22,6 +22,7 @@ pinecone_index = pc.Index("lawllm")
 Settings.embed_model = OpenAIEmbedding()
 
 documents = SimpleDirectoryReader("files/Title_1/").load_data()
+documents += SimpleDirectoryReader("files/Title_3/").load_data()
 
 vector_store = PineconeVectorStore(pinecone_index=pinecone_index)
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
